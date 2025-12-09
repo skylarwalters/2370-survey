@@ -9,22 +9,19 @@ import requests
 import io
 # data ------------------------------------------------------------------data = np.load("data/chr1/demo_pca_chr1.npy", allow_pickle=True).item()
 
-DATA_URL = (
-  "https://raw.githubusercontent.com/cs237-final/src/main/"
-  "data/chr1/demo_pca_chr1.npy"
-)
-data = np.load(io.BytesIO(requests.get(DATA_URL).content), allow_pickle=True).item()
+data = np.load("data/demo_pca_chr1_smaller.npz", allow_pickle=True)
+#pca=data['pca']
+pcs = data['pcs']
+superpops = data['superpops']
+samples = data.get('samples', np.arange(pcs.shape[0]))
 
-with open("data/chr1/hover-interp.json", "r") as f:
+with open("data/hover-interp.json", "r") as f:
    hover_texts = json.load(f)
 
-
-
-
-pca = data["pca"]
-pcs = data["pcs"]
-superpops = data["superpops"]
-samples = data.get("samples", np.arange(pcs.shape[0]))
+# pca = data["pca"]
+# pcs = data["pcs"]
+# superpops = data["superpops"]
+# samples = data.get("samples", np.arange(pcs.shape[0]))
 
 # colors and labels ------------------------------------------------------
 superpop2color = {
