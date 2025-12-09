@@ -883,4 +883,6 @@ def clear_lasso(n_clicks, fig, df_json, orig):
     return fig, default_msg, [empty_header, empty_body]
 
 
-app.run(debug=True)
+import os
+
+app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8050)), debug=True)
